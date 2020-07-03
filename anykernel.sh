@@ -4,7 +4,7 @@
 ### AnyKernel setup
 # global properties
 properties() { '
-kernel.string=
+kernel.string=SentrY Kernel
 do.devicecheck=1
 do.cleanup=1
 device.name1=
@@ -37,4 +37,3 @@ split_boot;
 
 flash_boot;
 ## end vendor_boot install
-
