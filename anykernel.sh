@@ -4,18 +4,18 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=QuicksilveR Kernel by imjyotiraditya
+kernel.string=QuicksilveR Kernel by 007
 do.devicecheck=1
 do.modules=1
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=odin
+device.name1=redwood
 device.name2=
 device.name3=
 device.name4=
 device.name5=
-supported.versions=11.0-13.0
+supported.versions=12.0-13.0
 supported.patchlevels=
 '; } # end properties
 
