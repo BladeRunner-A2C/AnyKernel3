@@ -291,21 +291,18 @@ abort() {
 }
 do_devicecheck() {
   [ "$(file_getprop anykernel.sh do.devicecheck)" == 1 ] || return 1;
-  local device devicename match product testname vendordevice vendorproduct;
+  local match manufacturer platform;
   ui_print "Checking device...";
-  device=$(getprop ro.product.device 2>/dev/null);
-  product=$(getprop ro.build.product 2>/dev/null);
-  vendordevice=$(getprop ro.product.vendor.device 2>/dev/null);
-  vendorproduct=$(getprop ro.vendor.product.device 2>/dev/null);
-  for testname in $(grep '^device.name.*=' anykernel.sh | cut -d= -f2-); do
-    for devicename in $device $product $vendordevice $vendorproduct; do
-      if [ "$devicename" == "$testname" ]; then
-        ui_print "$testname" " ";
-        match=1;
-        break 2;
-      fi;
-    done;
-  done;
+  # Get manufacturer and platform name
+  manufacturer=$(getprop ro.product.manufacturer 2>/dev/null);
+  platform=$(getprop ro.board.platform 2>/dev/null);
+  # Check for Sony + lahaina combination (case sensitive)
+  if [ ! -z "$manufacturer" ] && [ ! -z "$platform" ]; then
+    if [ "$manufacturer" == "Sony" ] && [ "$platform" == "lahaina" ]; then
+      ui_print "Sony device on lahaina platform" " ";
+      match=1;
+    fi;
+  fi;
   if [ ! "$match" ]; then
     abort " " "Unsupported device. Aborting...";
   fi;

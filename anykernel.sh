@@ -7,10 +7,11 @@ properties() { '
 kernel.string=QuicksilveR Kernel
 do.devicecheck=1
 do.cleanup=1
-device.name1=pdx214
-device.name2=pdx215
-device.name3=pdx217
-device.name4=sagami
+## these being managed at updater-binary
+#device.name1=pdx214
+#device.name2=pdx215
+#device.name3=pdx217
+#device.name4=sagami
 '; } # end properties
 
 
