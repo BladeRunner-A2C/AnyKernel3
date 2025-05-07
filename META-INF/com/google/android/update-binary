@@ -291,12 +291,20 @@ abort() {
 }
 do_devicecheck() {
   [ "$(file_getprop anykernel.sh do.devicecheck)" == 1 ] || return 1;
-  local match manufacturer platform;
+  local match manufacturer model;
   ui_print "Checking device...";
-  # Get manufacturer and platform name
-  manufacturer=$(getprop ro.product.manufacturer 2>/dev/null);
-  platform=$(getprop ro.board.platform 2>/dev/null);
-  # Check for Sony + lahaina combination (case sensitive)
+  # Get Sony platform model name
+  model=`grep -aim1 'model:' /dev/block/bootdevice/by-name/LTALabel | sed -e 's/^.*model:[ ]*\([A-Za-z0-9-]*\).*$/\1/I'` 2> /dev/null
+  # Check for carrier model
+  if [ -n "$model" ]; then
+    for testname in $(cat models.txt | tr '|' '\n'); do
+      if [ "$model" == "$testname" ]; then
+        ui_print "$testname"
+        match=1
+        break
+      fi
+    done
+  fi
   if [ ! -z "$manufacturer" ] && [ ! -z "$platform" ]; then
     if [ "$manufacturer" == "Sony" ] && [ "$platform" == "lahaina" ]; then
       ui_print "Sony device on lahaina platform" " ";
