@@ -5,12 +5,11 @@
 # global properties
 properties() { '
 kernel.string=SentrY Kernel by creator4983
-do.devicecheck=1
+do.devicecheck=0
 do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=miatoll
 '; } # end properties
 
 
@@ -23,7 +22,7 @@ set_perm_recursive 0 0 750 750 $RAMDISK/init* $RAMDISK/sbin;
 
 # boot shell variables
 BLOCK=/dev/block/bootdevice/by-name/boot;
-IS_SLOT_DEVICE=0;
+IS_SLOT_DEVICE=1;
 RAMDISK_COMPRESSION=auto;
 PATCH_VBMETA_FLAG=auto;
 
@@ -31,7 +30,6 @@ PATCH_VBMETA_FLAG=auto;
 . tools/ak3-core.sh;
 
 # boot install
-dump_boot; # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
-
-write_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
+dump_boot;
+write_boot;
 ## end boot install
