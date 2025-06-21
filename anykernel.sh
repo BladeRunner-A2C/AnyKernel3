@@ -4,7 +4,7 @@
 ### AnyKernel setup
 # global properties
 properties() { '
-kernel.string=QuicksilveR Kernel
+kernel.string=SentrY Kernel
 do.devicecheck=1
 do.cleanup=1
 ## these being managed at updater-binary
@@ -41,4 +41,3 @@ split_boot;
 
 flash_boot;
 ## end vendor_boot install
-
