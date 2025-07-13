@@ -10,9 +10,8 @@ do.modules=1
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=XQ-EC44
-device.name2=XQ-EC54
-device.name3=XQ-EC72
+device.name1=cerro
+device.name2=PQ83A01
 '; } # end properties
 
 
